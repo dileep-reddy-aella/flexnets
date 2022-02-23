@@ -2,28 +2,30 @@ import React from 'react'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 
-const boxStyles = {
-  color: `bg-${color}`,
-  bordered: `border border-${border}`
-}
-
 const Box = React.forwardRef(({
   children,
   color,
   border,
   variant,
-}) => {
+}, ref) => {
+
+  const boxStyles = {
+    color: `bg-${color}`,
+    bordered: `border border-${border}`
+  }
+
   return (
-    <div className={classNames(
+    <div ref={ref} className={classNames(
       'box-border m-0 min-w-0',
-      boxStyles[color],
-      border && boxStyles[bordered],
+      boxStyles.color,
+      border && boxStyles.bordered,
       variant
     )}>
       {children}
     </div>
   )
 })
+
 
 Box.defaultProps = {
   variant: '',
